@@ -1,7 +1,5 @@
-package restAssuredIntro;
+package day1;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -34,7 +32,8 @@ public class IntroToRestAssured {
         assertThat(response.getContentType(),is("text/plain;charset=UTF-8"));
         // Easy way to work with Content-Type is text/plain;charset=UTF-8
         assertThat(response.getContentType(),startsWith("text/plain"));
-        assertThat(response.getContentType(),is(not(ContentType.JSON)));
+        // Easy way to work with Content-Type is text/plain;charset=UTF-8
+        assertThat(response.getContentType(),endsWith("UTF-8"));
 
     }
 
