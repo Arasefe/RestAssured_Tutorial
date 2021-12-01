@@ -1,6 +1,7 @@
 package day2;
 
 import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -22,26 +23,37 @@ public class GetAllSpartans {
         basePath="/api";
     }
 
+
+    @DisplayName("Spartan Teardown Method")
+    @BeforeAll
+    public static void tearDown(){
+        reset();
+    }
+
     @DisplayName("Spartan GET api/spartans endpoint")
     @Test
     public void test_HelloSpartans(){
         /**
          * given()
-         * --Request Specification
-         * --Logging
-         * --Cookie
+         * -- Request Specification
+         * -- Used to provide additional information about the request
+         * -- Header, query params, path variable, authentication authorization
+         * -- Logging
+         * -- Cookie
          * when()
-         * --Actually where you send the request
+         * -- This is where you actually send the request with the HTTP method
+         * -- Actually where you send the request
+         * -- GET, POST, PUT, DELETE ... with the URL
          * then()
-         * --ValidatableResponse
-         * --Validate status code, header, payload, cookie
-         * --Response time, structure of payload, logging response
+         * -- ValidatableResponse
+         * -- Validate status code, header, payload, cookie
+         * -- Response time, structure of payload, logging response
          */
-        RestAssured.given()
+        given()
                 .header("accept","application/xml")
-                .when()
+        .when()
                 .get("/spartans")
-                .then()
+        .then()
                 .statusCode(200)
                 .header("Content-Type","application/xml");
     }
@@ -49,11 +61,11 @@ public class GetAllSpartans {
     @DisplayName("Spartan GET api/spartans endpoint")
     @Test
     public void test_getAllSpartans(){
-        RestAssured.given()
+        given()
                 .accept(ContentType.JSON)
-                .when()
+        .when()
                 .get("/spartans")
-                .then()
+        .then()
                 .assertThat()
                 .statusCode(200)
                 .and()
