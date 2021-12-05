@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 
-public class SpartanAddUpdate {
+public class SpartanAdd {
     @DisplayName("Spartan Setup Method")
     @BeforeAll
     public static void setUp(){
@@ -92,5 +93,28 @@ public class SpartanAddUpdate {
                 .body("data.name",is("Tulpar"))
                 .body("data.gender",is("Male"))
                 .body("data.phone",is(2244151388L));
+    }
+
+
+    @DisplayName("Spartan Add Spartan with ExternalFile")
+    @Test
+    public void addSpartanWithExternalFile(){
+        File externalFile = new File("singleSpartan.json");
+
+        given()
+                .log().all()
+                .auth().basic("admin","admin")
+                .contentType(ContentType.JSON)
+                .body(externalFile).
+        when()
+                .post("/spartans").
+        then()
+                .log().all()
+                .statusCode(201)
+                .contentType(ContentType.JSON)
+                .body("success",is("A Spartan is Born!"))
+                .body("data.name",is("Egem"))
+                .body("data.gender",is("Male"))
+                .body("data.phone",is(1234334459));
     }
 }
