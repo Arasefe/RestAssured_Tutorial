@@ -1,6 +1,7 @@
 package day4;
 
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class LibraryAppTest {
 
 
     @DisplayName("Library Teardown Method")
-    @BeforeAll
+    @AfterAll
     public static void tearDown(){
         reset();
     }

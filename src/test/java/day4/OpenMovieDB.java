@@ -3,6 +3,7 @@ package day4;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,12 @@ public class OpenMovieDB {
     @BeforeAll
     public static void setUp() {
         baseURI = "http://www.omdbapi.com";
+
+    }
+    @DisplayName("Teardown Method")
+    @AfterAll
+    public static void teardown() {
+        reset();
 
     }
 
@@ -57,10 +64,4 @@ public class OpenMovieDB {
 
     }
 
-
-    @BeforeAll
-    public static void tearDown() {
-        reset();
-
-    }
 }
