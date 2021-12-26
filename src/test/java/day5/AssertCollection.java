@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utility.ConfigurationReader;
 
 import java.util.List;
 
@@ -17,8 +18,7 @@ public class AssertCollection {
     @DisplayName("Spartan Setup Method")
     @BeforeAll
     public static void setUp(){
-        baseURI="http://18.212.61.8:8000";
-        basePath="/api";
+        baseURI= ConfigurationReader.getProperty("spartan.base_url");
     }
 
 
